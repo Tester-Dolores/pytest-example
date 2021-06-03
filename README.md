@@ -4,7 +4,7 @@ ubuntu 18.04 LTS
 pipenv shell
 pipenv sync
 ```
-3. python run_test.py
+2. python run_test.py
 执行结果
 ```
 (pytest-example) hxe@LAPTOP-3NQL6G6U /mnt/d/pytest-example (main) $ python run_test.py
