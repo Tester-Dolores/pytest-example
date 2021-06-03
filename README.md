@@ -7,7 +7,7 @@ pipenv sync
 2. python run_test.py
 执行结果
 ```
-(pytest-example) hxe@LAPTOP-3NQL6G6U /mnt/d/pytest-example (main) $ python run_test.py
+(pytest-example) test@LAPTOP-3NQL6G6U /mnt/d/pytest-example (main) $ python run_test.py
 ================================================= test session starts ==================================================
 platform linux -- Python 3.7.5, pytest-6.2.4, py-1.10.0, pluggy-0.13.1 -- /home/hxe/.local/share/virtualenvs/pytest-example-vuC_Kfz-/bin/python
 cachedir: .pytest_cache
@@ -33,3 +33,5 @@ testcase/test_geocode.py::TestGeocode::test_regeo
 ------------------ generated html file: file:///mnt/d/pytest-example/report/20210604001857report.html ------------------
 ============================================ 4 passed, 4 warnings in 0.56s =============================================
 ```
+
+**如果您有任何问题...请先google...**
