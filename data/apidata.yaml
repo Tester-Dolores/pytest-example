@@ -1,0 +1,15 @@
+key: "" # your key
+geocode_geo:
+ api: "https://restapi.amap.com/v3/geocode/geo?"
+ address: "北京市朝阳区阜通东大街6号"
+geocode_regeo:
+ api: "https://restapi.amap.com/v3/geocode/regeo?"
+ location: "117.500244, 40.417801"
+direction_walking:
+ api: "https://restapi.amap.com/v3/direction/walking?"
+ origin: "116.434307,39.90909"
+ destination: "116.434446,39.90816"
+direction_transit:
+ api: "https://restapi.amap.com/v3/direction/transit/integrated?"
+ origin: "116.481499,39.9904"
+ destination: "116.465063,39.999538"
