@@ -47,8 +47,6 @@ def pytest_runtest_makereport(item):
     if report.when == "call" or report.when == "setup":
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            html = "<p>123</p>"
-            """
             html = (
                 "<div><p>Request URL:%s;</p>"
                 "<p>Response:%s</p>"
@@ -61,7 +59,7 @@ def pytest_runtest_makereport(item):
                     resp.request.headers,
                 )
             )
-            """
+            
             extra.append(pytest_html.extras.html(html))
         report.extra = extra
 
