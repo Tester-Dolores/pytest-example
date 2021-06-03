@@ -4,6 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pytest = "*"
+pytest-html = "*"
+pytest-rerunfailures = "*"
+pyyaml = "*"
+requests = "*"
 
 [dev-packages]
 
