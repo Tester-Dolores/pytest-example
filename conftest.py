@@ -1,31 +1,10 @@
-from requests import Session
+import gevent
+from gevent import monkey
+gevent.monkey.patch_all()
+
 import yaml
 import pytest
-
-with open("./data/apidata.yaml", encoding="UTF-8", errors="ignore") as f:
-    api_data = yaml.load(f, Loader=yaml.SafeLoader)
-key = api_data['key']
-
-class MySession(Session):
-    """
-    proxies = None
-    verify = None
-    """
-    proxies={"http":"localhost:8888","https":"localhost:8888"}
-    verify = False
-    
-    def request(self, method, url, proxies=proxies, verify=verify, *args, **kwargs):
-        global resp
-        resp = super(MySession, self).request(
-            method,
-            url,
-            proxies=proxies,
-            verify=verify,
-            timeout=(3, 180),
-            *args,
-            **kwargs
-        )
-        return resp
+from utils.http_request import MySession
 
 @pytest.fixture(scope="session")
 def req():

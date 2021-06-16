@@ -9,6 +9,8 @@ pytest-html = "*"
 pytest-rerunfailures = "*"
 pyyaml = "*"
 requests = "*"
+websocket-client = "*"
+locust = "*"
 
 [dev-packages]
 
