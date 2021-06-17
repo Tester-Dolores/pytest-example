@@ -48,8 +48,11 @@ testcase/test_geocode.py::TestGeocode::test_regeo
 * 已经有在本地跑过确认可以正确连接websocket服务器和启动locust执行性能测试
 
 [执行]
+
 `locust`
+
 如果`./report/locustlog.txt`打印如下,即说明已启动服务. 此时请使用浏览器打开'http://127.0.0.1:8089'
+
 ```
 [2021-06-16 20:45:19,378] LAPTOP-3NQL6G6U/WARNING/locust.main: System open file limit '1024' is below minimum setting '10000'. It's not high enough for load testing, and the OS didn't allow locust to increase it by itself. See https://github.com/locustio/locust/wiki/Installation#increasing-maximum-number-of-open-files-limit for more info.
 [2021-06-16 20:45:19,379] LAPTOP-3NQL6G6U/INFO/locust.main: Starting web interface at http://0.0.0.0:8089 (accepting connections from all network interfaces)
