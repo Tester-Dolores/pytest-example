@@ -40,7 +40,7 @@ testcase/test_geocode.py::TestGeocode::test_regeo
 
 # 执行性能测试
 
-[前置步骤]
+[websocket接口 前置步骤]
 1. 更改配置文件 api_data.yaml ws data 相关配置
 2. 调试 ws_request.py on_open()方法的run()方法,直到可以正确发送data
 3. 调试 ws_request.py on_message()方法,直到可以正确打印数据
