@@ -1,20 +1,23 @@
-import time
-from requests import Session
-from utils.help import events_request
+from locust.clients import HttpSession
+from locust.contrib.fasthttp import FastHttpSession
+from utils.help import api_data
+from locust import events
 
 
-
-class MySession(Session):
-    
+class MySession(HttpSession):
     proxies = None
-    verify = None
-    """
-    proxies={"http":"localhost:8888","https":"localhost:8888"}
-    verify = False
-    """
-    def request(self, method, url, proxies=proxies, verify=verify, *args, **kwargs):
+    if api_data()["is_use_fiddler"]:
+        proxies = {"http": "localhost:8888", "https": "localhost:8888"}
+
+    def __init__(self, request_event=events.request, user="", *args, **kwargs):
+        super().__init__(
+            base_url="", request_event=request_event, user=user, *args, **kwargs
+        )
+
+    def request(self, method, url, proxies=proxies, verify=False, *args, **kwargs):
         global resp
-        start_time = time.time()
+        if url.startswith("/"):
+            url = api_data()["api_data"]["url"] + url
 
         resp = super(MySession, self).request(
             method,
@@ -25,8 +28,31 @@ class MySession(Session):
             *args,
             **kwargs
         )
+        return resp
 
-        total_time = int((time.time() - start_time) * 1000)
-        events_request("success",method, url.split("/")[-1],resp.text, total_time)
 
+class MyFastSession(FastHttpSession):
+    proxies = None
+    if api_data()["is_use_fiddler"]:
+        proxies = {"http": "localhost:8888", "https": "localhost:8888"}
+
+    def __init__(self, environment, user, *args, **kwargs):
+        super().__init__(
+            base_url="", environment=environment, user=user, *args, **kwargs
+        )
+
+    def request(self, method, url, proxies=proxies, verify=False, *args, **kwargs):
+        global resp
+        if url.startswith("/"):
+            url = api_data()["api_data"]["url"] + url
+
+        resp = super(MyFastSession, self).request(
+            method,
+            url,
+            proxies=proxies,
+            verify=verify,
+            timeout=(3, 180),
+            *args,
+            **kwargs
+        )
         return resp

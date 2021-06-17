@@ -4,7 +4,8 @@ import json
 from locust import  User, task,HttpUser,between
 from utils.help import api_data
 from utils.ws_request import WSRequest
-from utils.http_request import MySession
+from utils.http_request import MySession, MyFastSession
+from locust.contrib.fasthttp import FastHttpUser
 
 """
 class WebSocketLocust1(User):
@@ -26,7 +27,7 @@ class WebSocketLocust1(User):
         wav ="./wav/A11_0.wav"
         self.client.start(wav)
 
-"""
+
 class WebSocketLocust2(HttpUser):
     wait_time = between(5, 9)
 
@@ -47,3 +48,26 @@ class WebSocketLocust2(HttpUser):
         url = api_data()["geocode_geo"]["api"]+"address="+api_data()["geocode_geo"]["address"]+"&key="+api_data()['key']
 
         self.client.get(url)
+
+"""
+
+class HttpLocust(FastHttpUser):
+    wait_time = between(0, 1)
+
+    def __init__(self, environment, *args, **kwargs):
+        super(HttpLocust, self).__init__(environment, *args, **kwargs)
+        self.client = MyFastSession(environment, self)
+        self.client.headers = {"Accept": "application/json"}
+
+    def on_start(self):
+        print("--------- task start ------------")
+
+    def on_stop(self):
+        print("---------- task stop ------------")
+
+    @task
+    def test_geocode(self):
+        url = api_data()["geocode_geo"]["api"]+"address="+api_data()["geocode_geo"]["address"]+"&key="+api_data()['key']
+
+        self.client.get(url)
+
