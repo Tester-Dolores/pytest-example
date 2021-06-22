@@ -4,6 +4,7 @@ gevent.monkey.patch_all()
 
 import yaml
 import pytest
+from py.xml import html
 from utils.http_request import MySession
 
 @pytest.fixture(scope="session")
