@@ -4,8 +4,23 @@ gevent.monkey.patch_all()
 
 import yaml
 import pytest
+import json
 from py.xml import html
+from urllib.parse import quote
+
 from utils.http_request import MySession
+from utils.help import *
+from utils.ws_request import WSRequest
+
+
+@pytest.fixture(scope="session")
+def wsreq():
+    signa,ts,app_id = get_xunfei_signa()
+    r = WSRequest(
+        api_data()["xunfei"]["url"] + "?appid=" + app_id + "&ts=" + ts + "&signa=" + quote(signa)        
+    )
+
+    return r
 
 @pytest.fixture(scope="session")
 def req():
@@ -27,6 +42,7 @@ def pytest_runtest_makereport(item):
     if report.when == "call" or report.when == "setup":
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
+            """
             html = (
                 "<div><p>Request URL:%s;</p>"
                 "<p>Response:%s</p>"
@@ -39,6 +55,7 @@ def pytest_runtest_makereport(item):
                     resp.request.headers,
                 )
             )
+            """
             
             extra.append(pytest_html.extras.html(html))
         report.extra = extra

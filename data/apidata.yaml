@@ -1,4 +1,19 @@
 is_use_fiddler: False
+num: 0
+asr_lang: 'zh'
+asr_format: '.pcm'
+asr_audio_path: './wav/'
+asr_sample: 16000
+enable_vad: True
+enable_repunct: False
+measure_confidence: False
+enable_words: False
+
+xunfei:
+  url: "ws://rtasr.xfyun.cn/v1/ws"
+  app_id: ""
+  api_key: ""
+
 key: "" # your key
 geocode_geo:
  api: "https://restapi.amap.com/v3/geocode/geo?"
@@ -14,11 +29,3 @@ direction_transit:
  api: "https://restapi.amap.com/v3/direction/transit/integrated?"
  origin: "116.481499,39.9904"
  destination: "116.465063,39.999538"
-# ws data 按需替换成正确的参数
-wsurl: ""
-key: &key "123"
-secret: &secret "123"
-params:
- key: *key
- secret: *secret
- headers01: 123

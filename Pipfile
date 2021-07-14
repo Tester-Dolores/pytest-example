@@ -11,6 +11,7 @@ pyyaml = "*"
 requests = "*"
 websocket-client = "*"
 locust = "*"
+levenshtein = "*"
 
 [dev-packages]
 

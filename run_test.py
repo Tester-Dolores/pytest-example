@@ -3,7 +3,7 @@ import time
 import os
 
 debug = False
-CASE_DIR = "./testcase"
+CASE_DIR = "./testcase/test_xunfei_asr.py"
 REPORT_DIR = "./report"
 
 if __name__ == "__main__":
@@ -20,7 +20,7 @@ if __name__ == "__main__":
                 CASE_DIR,
                 "--reruns",
                 "0",
-                "--html=" + html_report,
-                "--self-contained-html",
+                #"--html=" + html_report,
+                #"--self-contained-html",
             ]
         )

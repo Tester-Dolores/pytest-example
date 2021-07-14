@@ -130,4 +130,6 @@ dmypy.json
 
 
 report/
+result/
 .pytest_cache
+config.txt
